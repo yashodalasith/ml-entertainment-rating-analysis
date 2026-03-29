@@ -1,0 +1,19 @@
+{
+  "best_k": 2,
+  "n_svd_components": 9,
+  "rows_total": 19311,
+  "rows_train": 15448,
+  "rows_test": 3863,
+  "train_silhouette": 0.6764207763388159,
+  "test_silhouette": 0.6648168961369865,
+  "silhouette_gap": 0.011603880201829453,
+  "artifacts": {
+    "model": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\kmeans_pipeline.joblib",
+    "k_evaluation": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\k_evaluation.csv",
+    "cluster_assignments": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\cluster_assignments.csv",
+    "cluster_profile": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\cluster_profile.csv",
+    "cluster_meanings": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\cluster_meanings.csv",
+    "cluster_examples": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\cluster_examples.csv",
+    "metadata": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\metadata.json"
+  }
+}
