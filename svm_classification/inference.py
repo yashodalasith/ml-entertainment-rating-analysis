@@ -80,9 +80,9 @@ if __name__ == "__main__":
     pred, prob = predict_anime_hit(args.members, args.popularity, args.episodes, args.ranked, args.genre)
     
     if pred:
-        print(f"\nPrediction: {pred.upper()}")
+        print(f"\nPrediction: {pred.upper()} (Threshold: > 8.0)")
         print(f"Confidence (Hit Probability): {prob:.2%}")
         if pred == "Hit":
-            print("Woot! This anime is likely a massive Hit (> 8.0 score)!")
+            print("Woot! This anime is likely a massive Hit!")
         else:
             print("This anime is predicted to be a 'Standard Release'.")
