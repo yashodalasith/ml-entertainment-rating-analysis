@@ -39,7 +39,8 @@ def preprocess_training_data(df):
     print("Preprocessing training data...")
     df, medians = clean_data(df)
     
-    # Genre Encoding (using .loc to avoid SettingWithCopyWarning)
+    # Genre Encoding (cast to object first to allow list values)
+    df['genre'] = df['genre'].astype(object)
     df.loc[:, 'genre'] = df['genre'].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else [])
     mlb = MultiLabelBinarizer()
     genre_encoded = mlb.fit_transform(df['genre'])
