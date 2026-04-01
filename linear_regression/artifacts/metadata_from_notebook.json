@@ -1,0 +1,11 @@
+{
+  "best_model": "Ridge",
+  "rows_total": 18732,
+  "rows_train": 14985,
+  "rows_test": 3747,
+  "files": {
+    "model": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\linear_regression\\artifacts\\best_model_from_notebook.joblib",
+    "results": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\linear_regression\\artifacts\\results_from_notebook.csv",
+    "metadata": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\linear_regression\\artifacts\\metadata_from_notebook.json"
+  }
+}
