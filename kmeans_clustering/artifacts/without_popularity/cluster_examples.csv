@@ -1,0 +1,11 @@
+cluster,cluster_label,title,members,score,popularity
+0,Mainstream / High Engagement,Death Note,1871043,8.65,1
+0,Mainstream / High Engagement,Shingeki no Kyojin,1754979,8.47,2
+0,Mainstream / High Engagement,Sword Art Online,1657823,7.49,3
+0,Mainstream / High Engagement,Fullmetal Alchemist: Brotherhood,1615084,9.23,4
+0,Mainstream / High Engagement,One Punch Man,1475219,8.68,5
+1,Long-tail / Lower Engagement,Noragami,1125472,8.1,16
+1,Long-tail / Lower Engagement,Sword Art Online II,1077494,7.05,18
+1,Long-tail / Lower Engagement,Boku no Hero Academia 2nd Season,1023413,8.6,22
+1,Long-tail / Lower Engagement,Shingeki no Kyojin Season 2,979627,8.42,31
+1,Long-tail / Lower Engagement,Nanatsu no Taizai,946095,8.15,38
