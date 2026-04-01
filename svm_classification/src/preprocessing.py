@@ -6,6 +6,7 @@ import os
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, MultiLabelBinarizer
 
+pd.options.mode.chained_assignment = None # Suppress SettingWithCopyWarning
 MODELS_DIR = "models"
 
 def clean_data(df):
@@ -14,11 +15,11 @@ def clean_data(df):
     Returns the cleaned dataframe and the median values for imputation.
     """
     print("Cleaning data...")
-    # Drop rows where target (score) is null
-    df = df.dropna(subset=['score'])
+    # Drop rows where target (score) is null and ensure we have an independent copy
+    df = df.dropna(subset=['score']).copy()
     
     # Target: Hit (> 8.0)
-    df['target'] = (df['score'] > 8.0).astype(int)
+    df.loc[:, 'target'] = (df['score'] > 8.0).astype(int)
     
     # Calculate medians for features
     features_num = ['members', 'popularity', 'episodes', 'ranked']
@@ -26,7 +27,7 @@ def clean_data(df):
     
     # Fill missing values for features (during training)
     for col, val in medians.items():
-        df[col] = df[col].fillna(val)
+        df.loc[:, col] = df[col].fillna(val)
     
     return df, medians
 
@@ -38,8 +39,8 @@ def preprocess_training_data(df):
     print("Preprocessing training data...")
     df, medians = clean_data(df)
     
-    # Genre Encoding
-    df['genre'] = df['genre'].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else [])
+    # Genre Encoding (using .loc to avoid SettingWithCopyWarning)
+    df.loc[:, 'genre'] = df['genre'].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else [])
     mlb = MultiLabelBinarizer()
     genre_encoded = mlb.fit_transform(df['genre'])
     genre_df = pd.DataFrame(genre_encoded, columns=mlb.classes_)

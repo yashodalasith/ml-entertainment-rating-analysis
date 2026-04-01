@@ -10,7 +10,7 @@ def train_svm(X_train, y_train, kernel='poly'):
     Trains an SVM with the specified kernel.
     """
     print(f"Training SVM with {kernel} kernel...")
-    model = SVC(kernel=kernel, class_weight='balanced', probability=True, random_state=42, max_iter=5000)
+    model = SVC(kernel=kernel, class_weight='balanced', probability=True, random_state=42, max_iter=10000)
     model.fit(X_train, y_train)
     return model
 
