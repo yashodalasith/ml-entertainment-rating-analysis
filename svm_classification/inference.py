@@ -18,15 +18,15 @@ def check_model_exists():
         return False
     return True
 
-def predict_anime_hit(members, popularity, episodes, ranked, genre):
+def predict_anime_hit(members=None, popularity=None, episodes=None, ranked=None, genre=None):
     """
     Predicts if an anime will be a 'Hit' (> 8.0) or 'Standard'.
     Args:
-        members (int): Total members on MyAnimeList.
-        popularity (int): Popularity rank.
-        episodes (int): Number of episodes.
-        ranked (int): Score rank.
-        genre (list): List of genres.
+        members (int, optional): Total members on MyAnimeList.
+        popularity (int, optional): Popularity rank.
+        episodes (int, optional): Number of episodes.
+        ranked (int, optional): Score rank.
+        genre (list, optional): List of genres.
     Returns:
         prediction (str): 'Hit' or 'Standard'.
         probability (float): Confidence probability for 'Hit'.
@@ -37,7 +37,7 @@ def predict_anime_hit(members, popularity, episodes, ranked, genre):
     # Load model
     model = joblib.load(BEST_MODEL_PATH)
     
-    # Prepare input
+    # Prepare input (passing None is now handled by src.preprocessing)
     input_dict = {
         'members': members,
         'popularity': popularity,
@@ -58,18 +58,24 @@ def predict_anime_hit(members, popularity, episodes, ranked, genre):
 if __name__ == "__main__":
     # Example usage via command line
     parser = argparse.ArgumentParser(description="Predict if an anime is a 'Hit'.")
-    parser.add_argument("--members", type=int, default=1000000, help="Number of members.")
-    parser.add_argument("--popularity", type=int, default=10, help="Popularity rank.")
-    parser.add_argument("--episodes", type=int, default=12, help="Number of episodes.")
-    parser.add_argument("--ranked", type=int, default=5, help="Score rank.")
-    parser.add_argument("--genre", nargs="+", default=["Action", "Adventure", "Fantasy"], help="Genres.")
+    parser.add_argument("--members", type=int, help="Number of members.")
+    parser.add_argument("--popularity", type=int, help="Popularity rank.")
+    parser.add_argument("--episodes", type=int, help="Number of episodes.")
+    parser.add_argument("--ranked", type=int, help="Score rank.")
+    parser.add_argument("--genre", nargs="+", help="Genres.")
     
     args = parser.parse_args()
     
-    print(f"\n--- Predicting for Anime Profile ---")
-    print(f"Members: {args.members} | Popularity Rank: {args.popularity}")
-    print(f"Episodes: {args.episodes} | Ranked: {args.ranked}")
-    print(f"Genres: {', '.join(args.genre)}")
+    # If all arguments are None, show a warning but proceed to show how it handles missing data
+    if all(v is None for v in [args.members, args.popularity, args.episodes, args.ranked, args.genre]):
+        print("Note: All inputs are missing. Using training set medians for prediction...\n")
+    
+    print(f"--- Predicting for Anime Profile ---")
+    print(f"Members: {args.members if args.members is not None else '[Missing - Using Median]'}")
+    print(f"Popularity Rank: {args.popularity if args.popularity is not None else '[Missing - Using Median]'}")
+    print(f"Episodes: {args.episodes if args.episodes is not None else '[Missing - Using Median]'}")
+    print(f"Ranked: {args.ranked if args.ranked is not None else '[Missing - Using Median]'}")
+    print(f"Genres: {', '.join(args.genre) if args.genre is not None else '[Missing - Using Empty List]'}")
     
     pred, prob = predict_anime_hit(args.members, args.popularity, args.episodes, args.ranked, args.genre)
     
