@@ -1,0 +1,20 @@
+{
+  "best_k": 2,
+  "n_svd_components": 9,
+  "rows_total": 19311,
+  "rows_train": 15448,
+  "rows_test": 3863,
+  "train_silhouette": 0.6764207763388159,
+  "test_silhouette": 0.6648168961369865,
+  "silhouette_gap": 0.011603880201829453,
+  "artifacts": {
+    "model": "c:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\with_popularity\\kmeans_pipeline.joblib",
+    "k_evaluation": "c:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\with_popularity\\k_evaluation.csv",
+    "cluster_assignments": "c:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\with_popularity\\cluster_assignments.csv",
+    "cluster_profile": "c:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\with_popularity\\cluster_profile.csv",
+    "cluster_meanings": "c:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\with_popularity\\cluster_meanings.csv",
+    "cluster_examples": "c:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\with_popularity\\cluster_examples.csv",
+    "cluster_projection": "c:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\with_popularity\\cluster_projection.csv",
+    "metadata": "c:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\with_popularity\\metadata.json"
+  }
+}

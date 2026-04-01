@@ -203,6 +203,7 @@ def train_cluster_and_save(X: pd.DataFrame, analysis_df: pd.DataFrame, artifacts
     )
 
     full_labels = inference_pipeline.predict(X)
+    Z_full = svd.transform(preprocessor.transform(X))
     assignments = pd.DataFrame({"cluster": full_labels})
     assignments = pd.concat([analysis_df.reset_index(drop=True), assignments], axis=1)
 
@@ -216,11 +217,26 @@ def train_cluster_and_save(X: pd.DataFrame, analysis_df: pd.DataFrame, artifacts
             ["cluster", "cluster_label", "title", "members", "score", "popularity"]
         ]
 
+    cluster_projection = pd.DataFrame(
+        {
+            "svd_1": Z_full[:, 0],
+            "svd_2": Z_full[:, 1] if Z_full.shape[1] > 1 else np.zeros(Z_full.shape[0]),
+            "cluster": full_labels,
+        }
+    )
+    cluster_projection = cluster_projection.merge(cluster_meanings, on="cluster", how="left")
+    optional_cols = [c for c in ["title", "members", "popularity", "score"] if c in assignments.columns]
+    if optional_cols:
+        cluster_projection = pd.concat(
+            [cluster_projection, assignments[optional_cols].reset_index(drop=True)], axis=1
+        )
+
     k_eval_path = artifacts_dir / "k_evaluation.csv"
     assignments_path = artifacts_dir / "cluster_assignments.csv"
     profile_path = artifacts_dir / "cluster_profile.csv"
     meanings_path = artifacts_dir / "cluster_meanings.csv"
     examples_path = artifacts_dir / "cluster_examples.csv"
+    projection_path = artifacts_dir / "cluster_projection.csv"
     model_path = artifacts_dir / "kmeans_pipeline.joblib"
     metadata_path = artifacts_dir / "metadata.json"
 
@@ -229,6 +245,7 @@ def train_cluster_and_save(X: pd.DataFrame, analysis_df: pd.DataFrame, artifacts
     cluster_profile.to_csv(profile_path, index=False)
     cluster_meanings.to_csv(meanings_path, index=False)
     cluster_examples.to_csv(examples_path, index=False)
+    cluster_projection.to_csv(projection_path, index=False)
     joblib.dump(inference_pipeline, model_path)
 
     metadata = {
@@ -247,6 +264,7 @@ def train_cluster_and_save(X: pd.DataFrame, analysis_df: pd.DataFrame, artifacts
             "cluster_profile": str(profile_path),
             "cluster_meanings": str(meanings_path),
             "cluster_examples": str(examples_path),
+            "cluster_projection": str(projection_path),
             "metadata": str(metadata_path),
         },
     }
@@ -262,6 +280,7 @@ def train_cluster_and_save(X: pd.DataFrame, analysis_df: pd.DataFrame, artifacts
         "cluster_profile": cluster_profile,
         "cluster_meanings": cluster_meanings,
         "cluster_examples": cluster_examples,
+        "cluster_projection": cluster_projection,
         "metadata": metadata,
         "model_path": model_path,
     }
