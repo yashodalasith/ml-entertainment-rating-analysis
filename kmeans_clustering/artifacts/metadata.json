@@ -14,6 +14,7 @@
     "cluster_profile": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\cluster_profile.csv",
     "cluster_meanings": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\cluster_meanings.csv",
     "cluster_examples": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\cluster_examples.csv",
+    "cluster_projection": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\cluster_projection.csv",
     "metadata": "C:\\Users\\yasho\\Downloads\\Entertainment-Rating-Prediction-ML\\kmeans_clustering\\artifacts\\metadata.json"
   }
 }
