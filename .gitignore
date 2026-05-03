@@ -21,3 +21,7 @@ Thumbs.db
 
 # Datasets
 data/
+
+# Models
+models/
+*.pkl
